@@ -213,7 +213,7 @@
                                 </div>
                             @empty
                                 <tr>
-                                    <td colspan="7" class="p-4 text-center text-gray-900 dark:text-white">
+                                    <td colspan="8" class="p-4 text-center text-gray-900 dark:text-white">
                                         Tidak ada data.
                                     </td>
                                 </tr>
