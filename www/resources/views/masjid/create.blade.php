@@ -4,7 +4,7 @@
 
     <div
         class="m-4 max-w-lg rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6 2xl:col-span-2">
-        <form action="{{ route('masjid.store') }}" method="POST">
+        <form action="{{ route('masjid.store') }}" enctype="multipart/form-data" method="POST">
             @csrf
 
             <div class="mb-4">
