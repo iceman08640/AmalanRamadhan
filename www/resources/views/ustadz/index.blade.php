@@ -75,6 +75,10 @@
                                 </th>
                                 <th scope="col"
                                     class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
+                                    Keterangan
+                                </th>
+                                <th scope="col"
+                                    class="p-4 text-left text-xs font-medium uppercase text-gray-500 dark:text-gray-400">
                                     Status
                                 </th>
                                 <th scope="col"
@@ -114,6 +118,10 @@
                                     <td
                                         class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
                                         {{ $ustadz->no_telp }}
+                                    </td>
+                                    <td
+                                        class="whitespace-nowrap p-4 text-base font-medium text-gray-900 dark:text-white">
+                                        {{ $ustadz->keterangan }}
                                     </td>
 
                                     @if ($ustadz->is_active)

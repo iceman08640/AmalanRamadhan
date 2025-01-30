@@ -28,6 +28,11 @@
                 <x-text-input id="no_telp" type="text" name="no_telp" placeholder="08..." :value="old('no_telp')" />
                 <x-input-error :messages="$errors->get('no_telp')" class="mt-2" />
             </div>
+            <div class="mb-4">
+                <x-input-label class="mb-2" for="keterangan">Keterangan</x-input-label>
+                <x-text-input id="keterangan" type="text" name="keterangan" :value="old('keterangan')" />
+                <x-input-error :messages="$errors->get('keterangan')" class="mt-2" />
+            </div>
             <div class="mb-7">
                 <x-input-label class="mb-2" for="is_active" :value="__('Status')" />
                 <ul class="grid w-full md:grid-cols-2">
