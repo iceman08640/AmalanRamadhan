@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: "Times New Roman", Times, serif;
-            margin: 0.5cm;
+            margin: 0.2cm;
             font-size: 15px;
         }
 
@@ -44,7 +44,7 @@
         }
 
         table {
-            font-size: 16px;
+            font-size: 14px;
             border: 1px solid #c7c7c7;
             border-collapse: collapse;
             width: 100%;
