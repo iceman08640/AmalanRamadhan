@@ -101,7 +101,9 @@ REM Step 4: Start MySQL Server
 echo.
 echo [4/10] Starting Database...
 start /b "" "%BASE_DIR_MYSQL%\bin\mysqld" --defaults-file="%BASE_DIR_MYSQL%\my.ini" --console >nul 2>&1
-timeout /t 5 >nul
+echo "Please select 'Allow' in the UAC prompt for MySQLd. Once allowed, press any key to continue."
+pause
+timeout /t 10 >nul
 
 Step 5: Recreating Database
 echo.

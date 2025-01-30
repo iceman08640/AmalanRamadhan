@@ -34,8 +34,8 @@
 
 1. **Setup Aplikasi**
 
-   - Download zip pilih yang **Source Code (zip)**.
-   - Ekstrak **AmalanRamadhan-1.0.0.zip**, jika tidak memiliki zip ekstraktor install **7z**.
+   - Download zip pada release, pilih yang **Source Code (zip)** di sini: [Download ZIP](https://github.com/iceman08640/AmalanRamadhan/releases).
+   - Ekstrak file zip, jika tidak memiliki zip ekstraktor install **7z**.
    - Jalankan `setup-server-windows.bat`.
    - Jika terdapat error setelah `[10/10] Clearing App cache...`, silakan pencet tombol apapun untuk keluar, kemudian ulangi langkah nomor 3 lagi.
    - Well done.
