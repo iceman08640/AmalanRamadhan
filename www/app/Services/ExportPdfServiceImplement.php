@@ -212,7 +212,7 @@ class ExportPdfServiceImplement implements ExportPdfService
         return $pdf->stream("{$nama_file}.pdf");
     }
 
-    public function permohonaKultumMasjidByAgendaOrNamaWarga($masjid_id, $agenda_id = null, $nama_warga = null, $is_include_lampiran)
+    public function permohonaTakjilMasjidByAgendaOrNamaWarga($masjid_id, $agenda_id = null, $nama_warga = null, $is_include_lampiran)
     {
         // Cek dulu masjid punya jadwal takjil apa tidak
         $rowCount = Takjil::where('masjid_id', $masjid_id)->count();
@@ -230,7 +230,7 @@ class ExportPdfServiceImplement implements ExportPdfService
             }
         ])->find($masjid_id);
 
-        // Mengambil catatan surat yang aktif dan terbaru dengan tipe kultum
+        // Mengambil catatan surat yang aktif dan terbaru dengan tipe takjil
         $catatanSurat = CatatanSurat::where('masjid_id', $masjid_id)
             ->where('tipe', 'takjil')
             ->where('is_active', true)
@@ -382,7 +382,7 @@ class ExportPdfServiceImplement implements ExportPdfService
             }
         ])->find($masjid_id);
 
-        // Mengambil catatan surat yang aktif dan terbaru dengan tipe kultum
+        // Mengambil catatan surat yang aktif dan terbaru dengan tipe takjil
         $catatanSurat = CatatanSurat::where('masjid_id', $masjid_id)
             ->where('tipe', 'takjil')
             ->where('is_active', true)

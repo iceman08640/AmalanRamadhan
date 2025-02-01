@@ -92,7 +92,7 @@ class ExportPdfController extends Controller
 
         if ($request->mode == 'lembar_permohonan' && $request->tipe == 'takjil' && $request->masjid_id != null && ($request->agenda_id != null || $request->nama_warga != null) && $request->ustadz_id == null) {
             // generate lembar permohonan tajil masjid berdasarkan agenda_id atau nama warga
-            return $this->exportPdfService->permohonaKultumMasjidByAgendaOrNamaWarga(
+            return $this->exportPdfService->permohonaTakjilMasjidByAgendaOrNamaWarga(
                 $request->masjid_id,
                 $request->agenda_id,
                 $request->nama_warga,

@@ -41,7 +41,7 @@ interface ExportPdfService
      * @param uuid agenda id
      * @param uuid ustadz id
      */
-    public function permohonaKultumMasjidByAgendaOrNamaWarga($masjid_id, $agenda_id, $nama_warga, $is_include_lampiran);
+    public function permohonaTakjilMasjidByAgendaOrNamaWarga($masjid_id, $agenda_id, $nama_warga, $is_include_lampiran);
 
     /**
      * generate jadwal takjil masjid
