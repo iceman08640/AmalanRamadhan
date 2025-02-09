@@ -40,6 +40,7 @@ REM Update php.ini dengan setting production
     echo extension=openssl
     echo extension=pdo_mysql
     echo extension=xsl
+    echo extension=zip
 ) >> "%~dp0bin\php\windows\php.ini"
 
 REM Step 2: Initialize MySQL Data Directory
