@@ -43,9 +43,34 @@ REM Update php.ini dengan setting production
     echo extension=zip
 ) >> "%~dp0bin\php\windows\php.ini"
 
-REM Step 2: Initialize MySQL Data Directory
+REM Step 2: Install Composer Dependencies
 echo.
-echo [2/10] Initializing Database data directory...
+echo [2/10] Installing dependencies part 1 of 2...
+cd "%~dp0www"
+"..\bin\php\windows\php.exe" "..\bin\composer\composer.phar" install --no-dev --optimize-autoloader
+if %errorlevel% equ 0 (
+    echo First step dependencies installed successfully.
+) else (
+    echo Failed to install first step dependencies.
+    pause
+    exit /b 1
+)
+
+REM Step 3: Install Node.js Dependencies
+echo.
+echo [3/10] Installing dependencies part 2 of 2...
+call "%~dp0bin\nodejs\npm.cmd" install
+if %errorlevel% equ 0 (
+    echo Second step dependencies installed successfully.
+) else (
+    echo Failed to install second step dependencies.
+    pause
+    exit /b 1
+)
+
+REM Step 4: Initialize MySQL Data Directory
+echo.
+echo [4/10] Initializing Database data directory...
 
 :: Ambil path folder MySQL
 set "BASE_DIR_MYSQL=%~dp0bin\mysql\mysql-8.0.30-winx64"
@@ -62,9 +87,9 @@ mkdir "%BASE_DIR_MYSQL%\data"
 :: Jalankan inisialisasi ulang database
 "%BASE_DIR_MYSQL%\bin\mysqld" --initialize-insecure --basedir="%BASE_DIR_MYSQL%" --datadir="%BASE_DIR_MYSQL%\data" --console
 
-REM Step 3: Start MySQL Server
+REM Step 5: Start MySQL Server
 echo.
-echo [3/10] Configuring Database...
+echo [5/10] Configuring Database...
 @echo off
 setlocal enabledelayedexpansion
 
@@ -98,16 +123,16 @@ echo quick
 echo max_allowed_packet=512M
 ) > "%BASE_DIR_MYSQL%\my.ini"
 
-REM Step 4: Start MySQL Server
+REM Step 6: Start MySQL Server
 echo.
-echo [4/10] Starting Database...
+echo [6/10] Starting Database...
 start /b "" "%BASE_DIR_MYSQL%\bin\mysqld" --defaults-file="%BASE_DIR_MYSQL%\my.ini" --console >nul 2>&1
 echo Please click Allow if the UAC prompt for MySQLd appears
 timeout /t 15 >nul
 
-Step 5: Recreating Database
+REM Step 7: Recreating Database
 echo.
-echo [5/10] Checking and recreating database...
+echo [7/10] Checking and recreating database...
 REM Cek apakah database ada, jika ada maka drop
 "%~dp0bin\mysql\mysql-8.0.30-winx64\bin\mysql" -u root -e "DROP DATABASE IF EXISTS amalanramadhan;"
 REM Buat database baru
@@ -120,37 +145,12 @@ if %errorlevel% equ 0 (
     exit /b 1
 )
 
-REM Step 6: Run Laravel Migrations
+REM Step 8: Run Laravel Migrations
 echo.
-echo [6/10] Seeding Database...
+echo [8/10] Seeding Database...
 cd "%~dp0www"
 "..\bin\php\windows\php.exe" artisan migrate:fresh --seed --force
 cd ..
-
-REM Step 7: Install Composer Dependencies
-echo.
-echo [7/10] Installing dependencies part 1 of 2...
-cd "%~dp0www"
-"..\bin\php\windows\php.exe" "..\bin\composer\composer.phar" install --no-dev --optimize-autoloader
-if %errorlevel% equ 0 (
-    echo First step dependencies installed successfully.
-) else (
-    echo Failed to install first step dependencies.
-    pause
-    exit /b 1
-)
-
-REM Step 8: Install Node.js Dependencies
-echo.
-echo [8/10] Installing dependencies part 2 of 2...
-call "%~dp0bin\nodejs\npm.cmd" install
-if %errorlevel% equ 0 (
-    echo Second step dependencies installed successfully.
-) else (
-    echo Failed to install second step dependencies.
-    pause
-    exit /b 1
-)
 
 REM Step 9: Build Vite Assets
 echo.
